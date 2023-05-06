@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Weather App</title>
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=YOUR_API_KEY"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=geometry"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gmaps"></script>
+  <link rel="stylesheet" href="weather.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Weather App</h1>
+    <div class="search">
+      <input type="text" id="searchInput" placeholder="Enter a city name...">
+      <button id="searchBtn">Search</button>
+    </div>
+    <div class="weather">
+      <h2 id="city"></h2>
+      <div class="details">
+        <div>
+          <img src="" alt="Temperature">
+          <p><span id="temp"></span></p>
+        </div>
+        <div>
+          <img src="icons/min_temp.png" alt="Minimum Temperature">
+          <p><span id="minTemp"></span></p>
+        </div>
+        <div>
+          <img src="icons/max_temp.png" alt="Maximum Temperature">
+          <p><span id="maxTemp"></span></p>
+        </div>
+        <div>
+          <img src="icons/wind.png" alt="Wind">
+          <p><span id="wind"></span></p>
+        </div>
+        <div>
+          <img src="icons/clouds.png" alt="Clouds">
+          <p><span id="clouds"></span></p>
+        </div>
+        <div>
+          <img src="icons/sunrise.png" alt="Sunrise">
+          <p><span id="sunrise"></span></p>
+        </div>
+        <div>
+          <img src="icons/sunset.png" alt="Sunset">
+          <p><span id="sunset"></span></p>
+        </div>
+      </div>
+    </div>
+    <div class="map" id="map"></div>
+  </div>
+</body>
+</html>
+<script src="waether.js"></script>
