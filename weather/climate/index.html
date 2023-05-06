@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather I</title>
+  </head>
+  <style>
+    #navbar {
+      background-color: #f2f2f2;
+      padding: 25px;
+      display: flex;
+    }
+    #search_btn {
+      margin-left: -10px;
+      border-radius: 0px 5px 5px 0px;
+      height: 44px;
+      width: 7%;
+      border: none;
+      background-color: #48484b;
+      color: white;
+    }
+    #input_box {
+      border-radius: 5px 0px 0px 5px;
+      border: 0px solid black;
+      width: 40%;
+      height: 25px;
+      padding: 8px;
+    }
+    #child_nav {
+      display: flex;
+      justify-content: center;
+      width: 50%;
+    }
+    #different_weather {
+      width: 40%;
+      text-align: end;
+      background-color: #ececed;
+      border-radius: 5px;
+      padding: 10px;
+      margin-right: 20px;
+      height: 45px;
+      border: none;
+    }
+    #child_2_nav {
+      display: flex;
+      width: 50%;
+      border: none;
+      background-color: #ececed;
+    }
+    #metric {
+      background-color: #fff;
+      width: 50%;
+      border: none;
+      border-radius: 5px;
+      margin: 3px;
+    }
+    #imperial {
+      border: none;
+    }
+    #parent{
+      margin-left: 30px;
+    }
+    #parent p{
+      margin-left: 30px;
+    }
+  </style>
+  <body>
+    <div id="navbar">
+      <input type="text" id="input_box" placeholder="Search" />
+      <button id="search_btn">Search</button>
+      <div id="child_nav">
+        <button id="different_weather">Different weather?</button>
+        <div id="child_2_nav">
+          <button id="metric">Metric: C, m/s</button>
+          <button id="imperial">Imperial: F, mph</button>
+        </div>
+      </div>
+    </div>
+    <div id="parent">
+      <h1 id="city-name" style="color: orange;"></h1>
+      <h1 id="temperature"></h1>
+      <h3 id="desc"></h3>
+      <hr>
+      <p id="windSpeed"></p>
+      <p id="pressure"></p>
+      <p id="humidity"></p>
+      <p id="visibility"></p>
+      
+    </div>
+  </body>
+</html>
+<script>
+  document.getElementById("search_btn").addEventListener("click", () => {
+    const city = document.getElementById("input_box").value.trim();
+    if (city) {
+      displayData(city);
+    } else {
+      alert("Please enter a city name.");
+    }
+  });
+  function displayData(city) {
+    fetch(
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=9ee56170c006525e1e00d91f8c418cb2&units=metric`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        const name =data.name;
+        const country =data.sys.country;
+        const feels_like =data.main.feels_like;
+        const Humid =data.main.humidity;
+        const pressure =data.main.pressure;
+        const visibility =data.visibility;
+        const wind_speed=data.wind.speed;
+
+
+        document.getElementById("city-name").innerText= name+", "+country;
+        document.getElementById("temperature").innerText= data.main.temp+"°C";
+        document.getElementById("desc").innerText= "Feels like "+feels_like+"°C"+" . "+data.weather[0].main+" . "+data.weather[0].description;
+        document.getElementById("windSpeed").innerText= "Wind speed: "+wind_speed + " m/s WNW";
+        document.getElementById("pressure").innerText= "Pressure: "+pressure+" hPa";
+        document.getElementById("humidity").innerText= "Humidity: "+Humid+"%";
+        document.getElementById("visibility").innerText= "Visibility: "+visibility+".0km";
+     })
+      .catch((err) => console.log(err));
+    }
+  </script>
