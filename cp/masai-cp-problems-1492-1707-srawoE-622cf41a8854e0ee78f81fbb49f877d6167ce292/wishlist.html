@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles/normalize.css" />
+  <link rel="stylesheet" href="styles/skeleton.css" />
+  <link rel="stylesheet" href="styles/style.css" />
+  <title>Library System</title>
+</head>
+
+<body>
+  <div class="nav">
+    <h2><a id="home" style="color:black" href="index.html">Home</a></h2>
+    <h2><a id="dashboard" style="color:black" href="dashboard.html">Dashboard</a></h2>
+    <h2><a id="wishlist" href="wishlist.html">Wishlist</a></h2>
+  </div>
+  <div class="container">
+    <h2>Total wishlist book(s) : <span id="total-wishlist">
+        <!-- added no. of total wishlist books here -->
+      </span></h2>
+    <div class="row">
+      <div class="columns four sidebar-one" id="sidebar-one">
+
+        <h4>Sort Based On Date</h4>
+        <button id="sort-low-to-high" class="u-full-width button button-primary">
+          Newest first
+        </button>
+        <button id="sort-high-to-low" class="u-full-width button button-primary">
+          oldest first
+        </button>
+      </div>
+
+      <div class="columns eight main">
+
+        <div class="data-list-wrapper" id="data-list-wrapper">
+          <!-- append card-list that includes card here -->
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="./scripts/wishlist.js" type="module"></script>
+</body>
+
+</html>

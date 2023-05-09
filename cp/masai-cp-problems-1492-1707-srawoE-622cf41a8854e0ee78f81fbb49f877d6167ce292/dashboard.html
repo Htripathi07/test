@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles/normalize.css" />
+  <link rel="stylesheet" href="styles/skeleton.css" />
+  <link rel="stylesheet" href="styles/style.css" />
+  <title>Library System</title>
+</head>
+
+<body>
+
+  <div class="nav">
+    <h2><a id="home" href="index.html">Home</a></h2>
+    <h2><a id="dashboard" href="dashboard.html">Dashboard</a></h2>
+    <h2><a id="wishlist" href="wishlist.html">Wishlist</a></h2>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="column">
+        <h1>🏫 Library System 📚</h1>
+        <p>Library System</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="columns four sidebar-one" id="sidebar-one">
+
+
+        <h4>Sort Based On publication date</h4>
+        <button id="newest-first" class="u-full-width button button-primary">
+          Newest first
+        </button>
+        <button id="oldest-first" class="u-full-width button button-primary">
+          oldest first
+        </button>
+
+
+      </div>
+
+      <div class="columns eight main">
+        <div class="data-list-wrapper" id="data-list-wrapper">
+          <!-- append card that includes book info here -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./scripts/dashboard.js" type="module"></script>
+</body>
+
+</html>
