@@ -1,0 +1,66 @@
+<html>
+  <head>
+    <title>Youtube mini app</title>
+  </head>
+  <body onload="getdata()">
+    <img src="https://www.youtube.com/about/static/svgs/icons/brand-resources/YouTube-logo-full_color_light.svg" alt="YouTube Logo" width="150" height="50">
+    <input type="text" placeholder="Search Any video" id="search-input">
+    <button id="but" onclick="getdata()">Search</button>
+    <select id="filter-select">
+      <option value="relevance">Relevance</option>
+      <option value="date">Date</option>
+      <option value="rating">Rating</option>
+      <option value="viewCount">View Count</option>
+    </select>
+    <div id="video-display"></div>
+  </body>
+  <script>
+    let APIKEY = "AIzaSyDqKsADCw8dSuteeWyn4Inxm68UvpWlhjA";
+
+    const MAX_RESULTS = 20;
+
+    let mostPopularVideosLoaded = false;
+
+    async function getdata() {
+      const query = document.getElementById("search-input").value;
+      const filter = document.getElementById("filter-select").value;
+      let url;
+
+      if (query) {
+        url = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=${MAX_RESULTS}&q=${query}&order=${filter}&key=${APIKEY}`;
+        mostPopularVideosLoaded = false;
+      } else if (!mostPopularVideosLoaded) {
+        url = `https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&regionCode=IN&maxResults=${MAX_RESULTS}&key=${APIKEY}`;
+        mostPopularVideosLoaded = true;
+      }
+
+      if (url) {
+        try {
+          const response = await fetch(url);
+          const data = await response.json();
+          displayData(data.items);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    }
+
+    function displayData(videos) {
+      const videoDisplay = document.getElementById("video-display");
+      videoDisplay.innerHTML = ""; // Clear previous search results
+
+      videos.forEach(video => {
+        const thumbnailUrl = video.snippet.thumbnails.medium.url;
+        const videoId = video.id.videoId;
+
+        const thumbnail = document.createElement("img");
+        thumbnail.src = thumbnailUrl;
+        thumbnail.addEventListener("click", () => {
+          window.location.href = `video.html?id=${videoId}`;
+        });
+
+        videoDisplay.appendChild(thumbnail);
+      });
+    }
+  </script>
+</html>
